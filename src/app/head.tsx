@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Domy przy Brzozowej",
-  description: "Zakrzów ul.Brzozowa 32-003 Niepołomice",
-  image: "/favicon-brzozowa.ico",
+  title: "Przebieczany",
+  description: "Przebieczany",
+  image: "/favicon.ico",
 };
 
 export default function Head() {

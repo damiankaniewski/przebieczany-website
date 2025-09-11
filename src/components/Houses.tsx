@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import houseCoordinates from "@/config/houseCoordinates";
 import { FaDownload } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
 
@@ -39,17 +38,12 @@ export default function Houses() {
         );
 
         const combinedData = sortedData.map((house: any) => {
-          const coords = houseCoordinates.find(
-            (coord) => coord.numer === house.Id
-          );
           return {
             ...house,
-            x: coords?.x || 0,
-            y: coords?.y || 0,
+            cenam2: (house.cena / house.metraz).toFixed(2),
             cena: house.cena ? formatPrice(house.cena) : house.cena,
           };
         });
-        console.log(combinedData);
         setHouseOffers(combinedData);
       } catch (error) {
         alert("Błąd podczas pobierania danych");
@@ -58,37 +52,6 @@ export default function Houses() {
     };
     fetchHouseOffers();
   }, []);
-
-  const isMobile = () => window.innerWidth <= 768;
-
-  const scrollToOffer = (id: string) => {
-    if (isMobile()) {
-      scrollToOfferMobile(id);
-    } else {
-      scrollToOfferDesktop(id);
-    }
-  };
-
-  const scrollToOfferDesktop = (id: string) => {
-    const container = listRef.current;
-    const targetElement = document.getElementById(id);
-
-    if (container && targetElement) {
-      const containerTop = container.getBoundingClientRect().top;
-      const targetTop = targetElement.getBoundingClientRect().top;
-
-      const offset = targetTop - containerTop + container.scrollTop;
-      container.scrollTo({ top: offset, behavior: "smooth" });
-    }
-  };
-
-  const scrollToOfferMobile = (id: string) => {
-    const targetElement = document.getElementById(id);
-
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth", block: "end" });
-    }
-  };
 
   return (
     <section
@@ -102,49 +65,48 @@ export default function Houses() {
       </div>
 
       <div className="w-full px-6 lg:px-10 py-10 flex flex-col md:flex-row items-start gap-10 md:h-auto">
-        <div className="w-full md:w-[55%] flex justify-center md:justify-start items-start relative ">
-          <div className="w-full relative">
+        <div className="w-full md:w-[55%] flex justify-center md:justify-start items-start relative flex-col">
+          <div className="max-lg:hidden w-full relative">
             <Image
-              src="/renderZGory2.jpg"
+              src="/przebieczany_front_domy_2.jpg"
               alt="Estate"
-              layout="responsive"
-              objectFit="cover"
-              className="rounded-lg shadow-lg"
-              width={600}
-              height={400}
+              sizes="50vw"
+              className="rounded-lg shadow-lg w-full h-full max-h-[65vh]"
+              width={300}
+              height={800}
               data-aos="fade-down"
             />
-            {houseOffers.map((house, index) => (
-              <button
-                key={index}
-                onClick={() => scrollToOffer(`house-${house.numer}`)}
-                className={`absolute flex justify-center items-center text-white ${
-                  house.status === 0
-                    ? "bg-red-500"
-                    : house.status === 1
-                    ? "bg-green2"
-                    : "bg-yellow-500"
-                } rounded-full w-5 h-5 lg:w-7 lg:h-7 xl:w-8 xl:h-8 text-sm lg:text-base font-bold transition-all duration-200`}
-                style={{
-                  top: `${house.y}%`,
-                  left: `${house.x}%`,
-                  transform: "translate(-50%, -50%)",
-                }}
-                data-aos="fade-down"
-                data-aos-delay={`${200 + index * 100}`}
-              >
-                {house.numer}
-              </button>
-            ))}
           </div>
+          <div className="lg:hidden w-full relative">
+            <Image
+              src="/przebieczany_front_domy.jpg"
+              alt="Estate"
+              sizes="50vw"
+              className="rounded-lg shadow-lg w-full h-auto"
+              width={300}
+              height={800}
+              data-aos="fade-down"
+            />
+          </div>
+          <div className="mt-4 w-full">
+                <a
+                  className="w-full bg-green2 p-4 rounded-xl text-white flex justify-center items-center gap-2 hover:bg-green3 transition-all duration-200"
+                  href={"/kartyMieszkań/karta_domu.pdf"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaDownload className="w-5 h-5" />
+                  <span className="text-base">Szczegóły oferty</span>
+                </a>
+              </div>
         </div>
 
         <div
           ref={listRef}
-          className="w-full md:w-[45%] flex justify-center items-start overflow-y-auto md:max-h-[70vh]"
+          className="w-full md:w-4/5 flex justify-center items-start overflow-y-auto 2xl:max-h-[65vh] lg:max-h-[48vh] md:max-h-[40vh]"
           data-aos="fade-up"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full h-full">
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-6 w-full h-full">
             {houseOffers.map((house, index) => (
               <div
                 key={index}
@@ -152,11 +114,12 @@ export default function Houses() {
                 className="flex flex-col bg-white p-4 rounded-lg shadow-md space-y-4"
               >
                 <div>
-                  <p className="text-green4 text-xl font-semibold">
+                  <div className="flex flex-row gap-4">
+                    <p className="text-green4 text-xl font-semibold">
                     Dom nr {house.numer}
                   </p>
                   <p className="text-gray-600">
-                    Status:{" "}
+                    {" "}
                     <span
                       className={`${
                         house.status === 0
@@ -169,26 +132,24 @@ export default function Houses() {
                       {getStatusText(house.status)}
                     </span>
                   </p>
-                  <p className="text-gray-600">Metraż: {house.metraz} m²</p>
-                  <p className="text-gray-600">Pokoje: {house.pokoje}</p>
-                  <p className="text-gray-600">Działka: {house.dzialka} ara</p>
-                  {house.status !== 0 && (
-                    <p className="text-gray-600 font-bold">
-                      Cena: {house.cena} zł
-                    </p>
-                  )}
-                </div>
-
-                <div className="mt-4">
-                  <a
-                    className="w-full bg-green2 p-4 rounded-xl text-white flex justify-center items-center gap-2 hover:bg-green3 transition-all duration-200"
-                    href={house.pdf}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaDownload className="w-5 h-5" />
-                    <span className="text-base">Szczegóły oferty</span>
-                  </a>
+                  </div>
+                  <div className="flex flex-row gap-4">
+                    <p className="text-gray-600">Metraż: {house.metraz} m²</p>
+                    <p className="text-gray-600">Pokoje: {house.pokoje}</p>
+                    <p className="text-gray-600">Działka: {house.dzialka} ara</p>
+                  </div>
+                  <div className="flex flex-row gap-4">
+                    {(
+                      <p className="text-gray-600 font-bold">
+                        Cena: {house.cena} zł
+                      </p>
+                    )}
+                    {(
+                      <p className="text-gray-600 font-bold">
+                        Cena za m²: {house.cenam2} zł
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}

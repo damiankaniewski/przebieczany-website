@@ -3,7 +3,6 @@ import HomeSection from "@/components/HomeSection";
 import Investment from "@/components/Investment";
 import Profits from "@/components/Profits";
 import Houses from "@/components/Houses";
-import Gallery from "@/components/Gallery";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -21,7 +20,6 @@ export default function Home() {
         <Investment />
         <Profits />
         <Houses />
-        <Gallery />
         <Contact />
         <Footer />
       </div>

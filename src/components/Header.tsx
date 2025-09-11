@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { Raleway } from "next/font/google";
 import Link from "next/link";
 
 export default function Header() {
@@ -39,12 +40,8 @@ export default function Header() {
           data-aos="zoom-out"
           data-aos-duration="1000"
         >
-          <Link href="#home">
-            <img
-              src="/logo_dlugie.png"
-              alt="Logo"
-              className="h-16 w-60 mr-2 drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)] object-contain"
-            />
+          <Link href="#home" className="font-['limelight'] font-bold lg:text-[32px] md:text-[28px] sm:text-[20px] drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)]">
+            Przebieczany
           </Link>
         </div>
 
@@ -70,12 +67,6 @@ export default function Header() {
             className="block text-white hover:text-green1 font-bold drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)]"
           >
             DOMY
-          </Link>
-          <Link
-            href="#gallery"
-            className="block text-white hover:text-green1 font-bold drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)]"
-          >
-            GALERIA
           </Link>
         </nav>
         <div
@@ -144,13 +135,6 @@ export default function Header() {
             onClick={() => setIsMenuOpen(false)}
           >
             <p className="break-words max-w-full">Domy</p>
-          </Link>
-          <Link
-            href="#gallery"
-            className="text-white text-xl w-full py-5 flex justify-center hover:bg-green2 break-words max-w-full drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)]"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            <p className="break-words max-w-full">Galeria</p>
           </Link>
           <Link
             href="#contact"

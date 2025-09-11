@@ -12,7 +12,7 @@ export default function Home() {
         data-aos-delay="500"
         data-aos-duration="1000"
       >
-        TWÓJ WYMARZONY DOM
+        ZAMIESZKAJ TAK,
       </p>
       <p
         className="text-3xl md:text-5xl text-white font-bold text-center drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)]"
@@ -20,7 +20,7 @@ export default function Home() {
         data-aos-delay="700"
         data-aos-duration="1000"
       >
-        W IDEALNEJ LOKALIZACJI.
+        JAK ZAWSZE CHCIAŁEŚ.
       </p>
       <div className="flex max-md:flex-col max-md:space-y-5 max-md:w-full max-md:items-center md:space-x-10 mt-8">
         <Link

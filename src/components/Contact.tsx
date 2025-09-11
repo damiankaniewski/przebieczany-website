@@ -61,7 +61,7 @@ export default function Contact() {
 
     const body = {
       email: "biuro@n20.pl",
-      subject: `Domy przy Brzozowej - Wiadomość od: ${formData.name}`,
+      subject: `Przebieczany - Wiadomość od: ${formData.name}`,
       message: `Imię i nazwisko: ${formData.name}\nEmail: ${formData.email}\nTelefon: ${formData.phone}\n\n${formData.message}`,
     };
 
@@ -115,7 +115,7 @@ export default function Contact() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 w-full">
           <div className="w-full flex items-stretch">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3194.8443747714277!2d20.140027999999997!3d50.013461!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTDCsDAwJzQ4LjUiTiAyMMKwMDgnMjQuMSJF!5e1!3m2!1spl!2spl!4v1735824868741!5m2!1spl!2spl"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15341.493061627622!2d20.10025632995414!3d49.97714739218749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4716411c024a8c09%3A0xf1de9f3b5f653b70!2s32-020%20Przebieczany!5e1!3m2!1spl!2spl!4v1757515032115!5m2!1spl!2spl"
               frameBorder="0"
               className="w-full h-full rounded-lg shadow-lg"
             ></iframe>

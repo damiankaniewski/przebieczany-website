@@ -1,65 +1,65 @@
 import {
-  FaMapPin,
   FaTree,
   FaCouch,
-  FaHeart,
-  FaSolarPanel,
-  FaLock,
+  FaBolt,
+  FaShieldAlt,
+  FaHammer,
+  FaUmbrellaBeach,
+  FaHome,
 } from "react-icons/fa";
-import { FaTemperatureHalf, FaHouseChimneyWindow } from "react-icons/fa6";
+import { FaLocationDot } from "react-icons/fa6";
 export default function Profits() {
   const profitItems = [
     {
-      icon: <FaMapPin className="text-green4 text-5xl " />,
-      title: "Blisko Krakowa i pełnej infrastruktury miejskiej",
+      icon: <FaLocationDot className="text-green4 text-5xl " />,
+      title: "Doskonała lokalizacja",
       description:
         "Dogodna lokalizacja w pobliżu Krakowa i kluczowych miejsc, z łatwym dostępem do autostrady.",
       delay: 0,
     },
     {
-      icon: <FaTree className="text-green4 text-5xl" />,
-      title: "Spokój i natura z dala od miejskiego zgiełku",
-      description: "Zielona okolica łącząca ciszę i wygodę.",
+      icon: <FaUmbrellaBeach className="text-green4 text-5xl" />,
+      title: "Taras i ogród",
+      description: "Przestrzeń do relaksu i spotkań w gronie bliskich, z bezpośrednim wyjściem z salonu.",
       delay: 100,
     },
     {
-      icon: <FaCouch className="text-green4 text-5xl" />,
-      title: "Przestronne wnętrza i nowoczesne rozwiązania architektoniczne",
-      description: "Domy z przestronnymi pokojami i funkcjonalnym układem.",
+      icon: <FaTree className="text-green4 text-5xl" />,
+      title: "Spokojna, zielona okolica",
+      description: "Usytuowanie wśród zieleni zapewnia ciszę, komfort i odpoczynek od miejskiego zgiełku.",
       delay: 200,
     },
     {
-      icon: <FaHeart className="text-green4 text-5xl " />,
-      title: "Prywatne, ogrodzone działki",
-      description: "Działki zapewniające prywatność i przestrzeń do relaksu.",
+      icon: <FaHammer className="text-green4 text-5xl " />,
+      title: "Solidne wykonanie",
+      description: "Dom zbudowany z wysokiej jakości materiałów, spełniających wszystkie normy budowlane.",
       delay: 300,
     },
     {
-      icon: <FaSolarPanel className="text-green4 text-5xl" />,
-
-      title: "Pompa ciepła, rekuperacja, przygotowanie pod fotowoltaikę",
-      description: "Energooszczędne technologie redukujące koszty.",
+      icon: <FaBolt className="text-green4 text-5xl" />,
+      title: "Nowoczesne technologie",
+      description: "Pompa ciepła, rekuperacja i przygotowanie pod fotowoltaikę, dla oszczędności i wygody.",
       delay: 400,
     },
     {
-      icon: <FaTemperatureHalf className="text-green4 text-5xl" />,
-      title: "Wysoka izolacja termiczna",
+      icon: <FaCouch className="text-green4 text-5xl" />,
+      title: "Przestronne wnętrza",
       description:
-        "Ściany o wyjątkowej izolacji, gwarantujące oszczędność energii.",
+        "Funkcjonalny układ i duże przeszklenia, które wypełniają wnętrza naturalnym światłem.",
       delay: 500,
     },
     {
-      icon: <FaLock className="text-green4 text-5xl" />,
-      title: "Zamknięty teren",
-      description: "Ogrodzona przestrzeń z przesuwaną bramą wjazdową i furtką.",
+      icon: <FaShieldAlt className="text-green4 text-5xl" />,
+      title: "Bezpieczeństwo i prywatność",
+      description: "Ogrodzona działka i zamknięty teren zapewniają prywatność i spokój mieszkańców.",
       delay: 600,
     },
     {
-      icon: <FaHouseChimneyWindow className="text-green4 text-5xl" />,
+      icon: <FaHome className="text-green4 text-5xl" />,
 
-      title: "Elektryczne rolety",
+      title: "Komfort na co dzień",
       description:
-        "Rolety podtynkowe sterowane elektrycznie dla większego bezpieczeństwa i wygody.",
+        "Elektryczne rolety i brama garażowa na pilota, dla większej wygody i bezpieczeństwa.",
       delay: 700,
     },
   ];
