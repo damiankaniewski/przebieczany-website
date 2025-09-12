@@ -30,17 +30,20 @@ export default function Houses() {
     const fetchHouseOffers = async () => {
       try {
         const response = await fetch(
-          "https://o28scgzs0g.execute-api.eu-central-1.amazonaws.com/prd/get-items"
+          "https://tfh4nuq7h6.execute-api.eu-central-1.amazonaws.com/prod/get-items"
         );
+        console.log(response);
         const data = await response.json();
         const sortedData = data.body.sort((a: any, b: any) =>
-          a.Id.localeCompare(b.Id)
+          a.id.localeCompare(b.id)
         );
 
         const combinedData = sortedData.map((house: any) => {
           return {
             ...house,
-            cenam2: (house.cena / house.metraz).toFixed(2),
+            status: house.dostepnosc,
+            cenam2: house.cena && house.metraz ? formatPrice((house.cena / house.metraz).toFixed(2)): "Brak danych",
+            cena30: house.cena30 ? formatPrice(house.cena30) : house.cena30,
             cena: house.cena ? formatPrice(house.cena) : house.cena,
           };
         });
@@ -136,7 +139,7 @@ export default function Houses() {
                   <div className="flex flex-row gap-4">
                     <p className="text-gray-600">Metraż: {house.metraz} m²</p>
                     <p className="text-gray-600">Pokoje: {house.pokoje}</p>
-                    <p className="text-gray-600">Działka: {house.dzialka} ara</p>
+                    <p className="text-gray-600">Ogródek: {house.ogrodek} ara</p>
                   </div>
                   <div className="flex flex-row gap-4">
                     {(
@@ -149,6 +152,16 @@ export default function Houses() {
                         Cena za m²: {house.cenam2} zł
                       </p>
                     )}
+                    {(
+                      <p className="text-gray-600 font-bold max-xl:hidden">
+                        Najniższa cena z 30 dni: {house.cena30} zł
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex">
+                      <p className="text-gray-600 font-bold xl:hidden">
+                        Najniższa cena z 30 dni: {house.cena30} zł
+                      </p>
                   </div>
                 </div>
               </div>
