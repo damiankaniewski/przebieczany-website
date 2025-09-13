@@ -15,6 +15,8 @@ export default function Houses() {
         return "Dostępny";
       case 2:
         return "Zarezerwowany";
+      case 3:
+        return "Niedostępny"
       default:
         return "Nieznany";
     }
@@ -35,7 +37,7 @@ export default function Houses() {
         console.log(response);
         const data = await response.json();
         const sortedData = data.body.sort((a: any, b: any) =>
-          a.id.localeCompare(b.id)
+          Number(a.id) - Number(b.id)
         );
 
         const combinedData = sortedData.map((house: any) => {
@@ -74,7 +76,7 @@ export default function Houses() {
               src="/przebieczany_front_domy_2.jpg"
               alt="Estate"
               sizes="50vw"
-              className="rounded-lg shadow-lg w-full h-full max-h-[65vh]"
+              className="rounded-lg shadow-lg w-full h-full max-h-[80vh] object-cover"
               width={300}
               height={800}
               data-aos="fade-down"
@@ -91,22 +93,11 @@ export default function Houses() {
               data-aos="fade-down"
             />
           </div>
-          <div className="mt-4 w-full">
-                <a
-                  className="w-full bg-green2 p-4 rounded-xl text-white flex justify-center items-center gap-2 hover:bg-green3 transition-all duration-200"
-                  href={"/kartyMieszkań/karta_domu.pdf"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaDownload className="w-5 h-5" />
-                  <span className="text-base">Szczegóły oferty</span>
-                </a>
-              </div>
         </div>
 
         <div
           ref={listRef}
-          className="w-full md:w-4/5 flex justify-center items-start overflow-y-auto 2xl:max-h-[65vh] lg:max-h-[48vh] md:max-h-[40vh]"
+          className="w-full md:w-4/5 flex justify-center items-start overflow-y-auto 2xl:max-h-[65vh] lg:max-h-[40vh] md:max-h-[40vh]"
           data-aos="fade-up"
         >
           <div className="grid grid-cols-1 md:grid-cols-1 gap-6 w-full h-full">
@@ -120,7 +111,7 @@ export default function Houses() {
                   <div className="flex flex-row gap-4">
                     <p className="text-green4 text-xl font-semibold">
                     Dom nr {house.numer}
-                  </p>
+                    </p>
                   <p className="text-gray-600">
                     {" "}
                     <span
@@ -129,6 +120,8 @@ export default function Houses() {
                           ? "text-red-500"
                           : house.status === 1
                           ? "text-green-500"
+                          : house.status === 3
+                          ? "text-gray-500"
                           : "text-yellow-500"
                       } font-semibold`}
                     >
@@ -136,33 +129,44 @@ export default function Houses() {
                     </span>
                   </p>
                   </div>
-                  <div className="flex flex-row gap-4">
-                    <p className="text-gray-600">Metraż: {house.metraz} m²</p>
-                    <p className="text-gray-600">Pokoje: {house.pokoje}</p>
-                    <p className="text-gray-600 max-sm:hidden">Ogródek: {house.ogrodek} m²</p>
+                  <div className={`${ house.status === 3 ? 'hidden' : null}`}>
+                    <div className="flex flex-row gap-4">
+                      <p className="text-gray-600">Metraż: {house.metraz} m²</p>
+                      <p className="text-gray-600">Pokoje: {house.pokoje}</p>
+                    </div>
+                    <div className="flex flex-row gap-4">
+                      {(
+                        <p className="text-gray-600 font-bold">
+                          Cena: {house.cena} zł
+                        </p>
+                      )}
+                      {(
+                        <p className="text-gray-600 font-bold">
+                          Cena za m²: {house.cenam2} zł
+                        </p>
+                      )}
+                      {(
+                        <p className="text-gray-600 font-bold max-xl:hidden">
+                          Najniższa cena z 30 dni: {house.cena30} zł
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex">
+                        <p className="text-gray-600 font-bold xl:hidden">
+                          Najniższa cena z 30 dni: {house.cena30} zł
+                        </p>
+                    </div>
                   </div>
-                  <p className="text-gray-600 sm:hidden">Ogródek: {house.ogrodek} m²</p>
-                  <div className="flex flex-row gap-4">
-                    {(
-                      <p className="text-gray-600 font-bold">
-                        Cena: {house.cena} zł
-                      </p>
-                    )}
-                    {(
-                      <p className="text-gray-600 font-bold">
-                        Cena za m²: {house.cenam2} zł
-                      </p>
-                    )}
-                    {(
-                      <p className="text-gray-600 font-bold max-xl:hidden">
-                        Najniższa cena z 30 dni: {house.cena30} zł
-                      </p>
-                    )}
-                  </div>
-                  <div className="flex">
-                      <p className="text-gray-600 font-bold xl:hidden">
-                        Najniższa cena z 30 dni: {house.cena30} zł
-                      </p>
+                  <div className={`${house.status === 3 ?  'hidden' : 'mt-4 w-full'}`}>
+                    <a
+                      className="w-full bg-green2 p-4 rounded-xl text-white flex justify-center items-center gap-2 hover:bg-green3 transition-all duration-200"
+                      href={"/kartyMieszkań/karta_domu.pdf"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaDownload className="w-5 h-5" />
+                      <span className="text-base">Szczegóły oferty</span>
+                    </a>
                   </div>
                 </div>
               </div>
