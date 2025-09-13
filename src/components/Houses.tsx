@@ -84,7 +84,7 @@ export default function Houses() {
             <Image
               src="/przebieczany_front_domy.jpg"
               alt="Estate"
-              sizes="50vw"
+              sizes="70vw"
               className="rounded-lg shadow-lg w-full h-auto"
               width={300}
               height={800}
@@ -139,8 +139,9 @@ export default function Houses() {
                   <div className="flex flex-row gap-4">
                     <p className="text-gray-600">Metraż: {house.metraz} m²</p>
                     <p className="text-gray-600">Pokoje: {house.pokoje}</p>
-                    <p className="text-gray-600">Ogródek: {house.ogrodek} ara</p>
+                    <p className="text-gray-600 max-sm:hidden">Ogródek: {house.ogrodek} m²</p>
                   </div>
+                  <p className="text-gray-600 sm:hidden">Ogródek: {house.ogrodek} m²</p>
                   <div className="flex flex-row gap-4">
                     {(
                       <p className="text-gray-600 font-bold">

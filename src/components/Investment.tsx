@@ -96,8 +96,8 @@ export default function Investment() {
             data-aos="fade-right"
             src="/przebieczany_tyl.jpg"
             alt="Modern houses"
-            sizes="50vw"
-            className="rounded-lg shadow-lg w-full h-auto"
+            sizes="100vw"
+            className="rounded-lg shadow-lg w-full h-full"
             width={533}
             height={500}
           />
