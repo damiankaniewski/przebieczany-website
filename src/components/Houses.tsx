@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Houses() {
   const listRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
   const [houseOffers, setHouseOffers] = useState<any[]>([]);
 
   const getStatusText = (status: number) => {
@@ -58,6 +59,29 @@ export default function Houses() {
     fetchHouseOffers();
   }, []);
 
+  useEffect(() => {
+    if (!imageRef.current || !listRef.current) return;
+
+      const updateHeight = () => {
+        if (window.innerWidth >= 768) { 
+          listRef.current!.style.height = imageRef.current!.clientHeight + "px";
+        } else {
+          listRef.current!.style.height = "auto";
+        }
+      };
+    updateHeight();
+
+    const resizeObserver = new ResizeObserver(updateHeight);
+    resizeObserver.observe(imageRef.current);
+
+    window.addEventListener("resize", updateHeight);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updateHeight);
+    };
+  }, [houseOffers]);
+
   return (
     <section
       id="houses"
@@ -69,9 +93,9 @@ export default function Houses() {
         </p>
       </div>
 
-      <div className="w-full px-6 lg:px-10 py-10 flex flex-col md:flex-row items-start gap-10 md:h-auto">
-        <div className="w-full md:w-[55%] flex justify-center md:justify-start items-start relative flex-col">
-          <div className="max-lg:hidden w-full relative">
+      <div className="w-full px-6 lg:px-10 py-10 flex items-start gap-10 md:h-auto">
+        <div className="w-full md:w-full flex justify-center md:justify-start items-start relative flex-col md:flex-row gap-6">
+          <div ref={imageRef} className="max-md:hidden w-3/4 relative">
             <Image
               src="/przebieczany_front_domy_2.jpg"
               alt="Estate"
@@ -82,7 +106,7 @@ export default function Houses() {
               data-aos="fade-down"
             />
           </div>
-          <div className="lg:hidden w-full relative">
+          <div className="md:hidden w-full relative">
             <Image
               src="/przebieczany_front_domy.jpg"
               alt="Estate"
@@ -93,84 +117,83 @@ export default function Houses() {
               data-aos="fade-down"
             />
           </div>
-        </div>
-
-        <div
-          ref={listRef}
-          className="w-full md:w-4/5 flex justify-center items-start overflow-y-auto 2xl:max-h-[65vh] lg:max-h-[40vh] md:max-h-[40vh]"
-          data-aos="fade-up"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-1 gap-6 w-full h-full">
-            {houseOffers.map((house, index) => (
-              <div
-                key={index}
-                id={`house-${house.numer}`}
-                className="flex flex-col bg-white p-4 rounded-lg shadow-md space-y-4"
-              >
-                <div>
-                  <div className="flex flex-row gap-4">
-                    <p className="text-green4 text-xl font-semibold">
-                    Dom nr {house.numer}
+          <div
+            ref={listRef}
+            className="w-full flex justify-center items-start overflow-y-auto"
+            data-aos="fade-up"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-6 w-full h-full">
+              {houseOffers.map((house, index) => (
+                <div
+                  key={index}
+                  id={`house-${house.numer}`}
+                  className="flex flex-col bg-white p-4 rounded-lg shadow-md space-y-4"
+                >
+                  <div>
+                    <div className="flex flex-row gap-4">
+                      <p className="text-green4 text-xl font-semibold">
+                      Dom nr {house.numer}
+                      </p>
+                    <p className="text-gray-600">
+                      {" "}
+                      <span
+                        className={`${
+                          house.status === 0
+                            ? "text-red-500"
+                            : house.status === 1
+                            ? "text-green-500"
+                            : house.status === 3
+                            ? "text-gray-500"
+                            : "text-yellow-500"
+                        } font-semibold`}
+                      >
+                        {getStatusText(house.status)}
+                      </span>
                     </p>
-                  <p className="text-gray-600">
-                    {" "}
-                    <span
-                      className={`${
-                        house.status === 0
-                          ? "text-red-500"
-                          : house.status === 1
-                          ? "text-green-500"
-                          : house.status === 3
-                          ? "text-gray-500"
-                          : "text-yellow-500"
-                      } font-semibold`}
-                    >
-                      {getStatusText(house.status)}
-                    </span>
-                  </p>
-                  </div>
-                  <div className={`${ house.status === 3 ? 'hidden' : null}`}>
-                    <div className="flex flex-row gap-4">
-                      <p className="text-gray-600">Metraż: {house.metraz} m²</p>
-                      <p className="text-gray-600">Pokoje: {house.pokoje}</p>
                     </div>
-                    <div className="flex flex-row gap-4">
-                      {(
-                        <p className="text-gray-600 font-bold">
-                          Cena: {house.cena} zł
-                        </p>
-                      )}
-                      {(
-                        <p className="text-gray-600 font-bold">
-                          Cena za m²: {house.cenam2} zł
-                        </p>
-                      )}
-                      {(
-                        <p className="text-gray-600 font-bold max-xl:hidden">
-                          Najniższa cena z 30 dni: {house.cena30} zł
-                        </p>
-                      )}
+                    <div className={`${ house.status === 3 ? 'hidden' : null}`}>
+                      <div className="flex flex-row gap-4">
+                        <p className="text-gray-600">Metraż: {house.metraz} m²</p>
+                        <p className="text-gray-600">Pokoje: {house.pokoje}</p>
+                      </div>
+                      <div className="flex flex-row gap-4">
+                        {(
+                          <p className="text-gray-600 font-bold">
+                            Cena: {house.cena} zł
+                          </p>
+                        )}
+                        {(
+                          <p className="text-gray-600 font-bold">
+                            Cena za m²: {house.cenam2} zł
+                          </p>
+                        )}
+                        {(
+                          <p className="text-gray-600 font-bold max-xl:hidden">
+                            Najniższa cena z 30 dni: {house.cena30} zł
+                          </p>
+                        )}
+                      </div>
+                      <div className="flex">
+                          <p className="text-gray-600 font-bold xl:hidden">
+                            Najniższa cena z 30 dni: {house.cena30} zł
+                          </p>
+                      </div>
                     </div>
-                    <div className="flex">
-                        <p className="text-gray-600 font-bold xl:hidden">
-                          Najniższa cena z 30 dni: {house.cena30} zł
-                        </p>
+                    <div className={`${house.status === 3 ?  'hidden' : 'mt-4 w-full'}`}>
+                      <a
+                        className="w-full bg-green2 p-4 rounded-xl text-white flex justify-center items-center gap-2 hover:bg-green3 transition-all duration-200"
+                        href={"/kartyMieszkań/karta_domu.pdf"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaDownload className="w-5 h-5" />
+                        <span className="text-base">Szczegóły oferty</span>
+                      </a>
                     </div>
-                  </div>
-                  <div className={`${house.status === 3 ?  'hidden' : 'mt-4 w-full'}`}>
-                    <a
-                      className="w-full bg-green2 p-4 rounded-xl text-white flex justify-center items-center gap-2 hover:bg-green3 transition-all duration-200"
-                      href={"/kartyMieszkań/karta_domu.pdf"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaDownload className="w-5 h-5" />
-                      <span className="text-base">Szczegóły oferty</span>
-                    </a>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
