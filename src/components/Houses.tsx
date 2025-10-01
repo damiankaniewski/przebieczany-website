@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { FaDownload } from "react-icons/fa6";
+import { FaInfoCircle } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
 
 export default function Houses() {
@@ -163,20 +164,57 @@ export default function Houses() {
                           </p>
                         )}
                         {(
-                          <p className="text-gray-600 font-bold">
+                          <p className="text-gray-600 font-bold max-sm:hidden">
                             Cena za m²: {house.cenam2} zł
                           </p>
                         )}
                         {(
-                          <p className="text-gray-600 font-bold max-xl:hidden">
-                            Najniższa cena z 30 dni: {house.cena30} zł
-                          </p>
+                          <div className="flex flex-row gap-1 max-xl:hidden group relative">
+                            <FaInfoCircle className={`${house.price_history && house.price_history.length > 0 ? 'text-gray-600 cursor-pointer mt-1' : 'hidden'}`}/>
+                            <p className="text-gray-600 font-bold">
+                              Najniższa cena z 30 dni: {house.cena30} zł
+                            </p>
+                            
+                            {house.price_history && house.price_history.length > 0 && (
+                              <div className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-200 rounded-lg shadow-lg p-4 z-50 w-64">
+                              <p className="text-gray-600 font-bold mb-2">Historia cen:</p>
+                              <ul className="text-gray-600 font-bold gap-2">
+                                {house.price_history.map((entry: any, id: number) => (
+                                  <li key={id}>
+                                    {new Date(entry.date).toLocaleDateString("pl-PL")} -{" "}
+                                    {formatPrice(entry.cena)} zł
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                            )}
+                          </div>
                         )}
                       </div>
-                      <div className="flex">
-                          <p className="text-gray-600 font-bold xl:hidden">
+                      <div className="flex flex-col">
+                        <p className="text-gray-600 font-bold sm:hidden">
+                          Cena za m²: {house.cenam2} zł
+                        </p>
+                        <div className="flex flex-row gap-1 xl:hidden group relative">
+                          <FaInfoCircle className={`${house.price_history && house.price_history.length > 0 ? 'text-gray-600 cursor-pointer mt-1' : 'hidden'}`}/>
+                          <p className="text-gray-600 font-bold">
                             Najniższa cena z 30 dni: {house.cena30} zł
                           </p>
+                          
+                          {house.price_history && house.price_history.length > 0 && (
+                            <div className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-200 rounded-lg shadow-lg p-4 z-50 w-64">
+                            <p className="text-gray-600 font-bold mb-2">Historia cen:</p>
+                            <ul className="text-gray-600 font-bold gap-2">
+                              {house.price_history.map((entry: any, id: number) => (
+                                <li key={id}>
+                                  {new Date(entry.date).toLocaleDateString("pl-PL")} -{" "}
+                                  {formatPrice(entry.cena)} zł
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                     <div className={`${house.status === 3 ?  'hidden' : 'mt-4 w-full'}`}>
