@@ -114,7 +114,7 @@ export default function Header() {
       </div>
 
       {isMenuOpen && (
-        <div className="fixed flex flex-col items-center top-24 pt-4 bg-green3  shadow-md z-30 w-screen h-auto">
+        <div className="fixed flex flex-col items-center pt-4 bg-green3  shadow-md z-30 w-screen h-auto">
           <Link
             href="#investment"
             className="text-white text-xl w-full py-5 flex justify-center hover:bg-green2 drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)]"
