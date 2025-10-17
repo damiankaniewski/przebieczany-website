@@ -1,15 +1,7 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
-import { FaMoon, FaSun } from "react-icons/fa6";
 
 export default function Investment() {
-  const [isDay, setIsDay] = useState(true);
-
-  const toggleImage = () => {
-    setIsDay(!isDay);
-  };
-
   return (
     <section
       id="investment"
