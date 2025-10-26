@@ -98,7 +98,7 @@ export default function Houses() {
         <div className="w-full md:w-full flex justify-center md:justify-start items-start relative flex-col md:flex-row gap-6">
           <div ref={imageRef} className="max-md:hidden w-3/4 relative">
             <Image
-              src="/przebieczany_front_domy_2.jpg"
+              src="/Przebieczany_front_domy_2.jpg"
               alt="Estate"
               sizes="50vw"
               className="rounded-lg shadow-lg w-full h-full max-h-[80vh] object-cover"
@@ -109,7 +109,7 @@ export default function Houses() {
           </div>
           <div className="md:hidden w-full relative">
             <Image
-              src="/przebieczany_front_domy.jpg"
+              src="/Przebieczany_front_domy.jpg"
               alt="Estate"
               sizes="70vw"
               className="rounded-lg shadow-lg w-full h-auto"
