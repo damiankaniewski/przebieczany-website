@@ -39,10 +39,8 @@ export default function Investment() {
                 Dodatkowy pokój na parterze
               </h3>
               <p className="text-base sm:text-lg">
-                Na parterze znajduje się dodatkowe pomieszczenie, 
-                które można przeznaczyć na biuro, pokój gościnny lub gabinet. 
-                To rozwiązanie, które zwiększa funkcjonalność domu i dopasowuje go do 
-                różnych stylów życia.
+                Na parterze istnieje możliwość wydzielenia dodatkowego pomieszczenia, które można przeznaczyć na biuro, pokój gościnny lub gabinet. 
+                To rozwiązanie, które zwiększa funkcjonalność domu i dopasowuje go do różnych stylów życia.
               </p>
             </div>
 
@@ -117,13 +115,8 @@ export default function Investment() {
                 Nowoczesne instalacje
               </h3>
               <p className="text-base sm:text-lg ">
-                Standard obejmuje ogrzewanie gazowe, 
-                pompę ciepła oraz ogrzewanie podłogowe, 
-                które zapewniają niskie koszty utrzymania
-                i komfort cieplny przez cały rok. 
-                Garaż wyposażono w bramę sterowaną pilotem, 
-                a w salonie zastosowano panoramiczne okna przesuwne HS, 
-                które doskonale doświetlają wnętrze.
+                Standard obejmuje min. pompę ciepła oraz ogrzewanie podłogowe, które zapewniają niskie koszty utrzymania i komfort cieplny przez cały rok. 
+                Garaż wyposażono w bramę sterowaną pilotem, a w salonie zastosowano panoramiczne okna przesuwne HS, które doskonale doświetlają wnętrze.
               </p>
             </div>
           </div>
@@ -147,9 +140,8 @@ export default function Investment() {
                 Blisko Krakowa i Wieliczki
               </h3>
               <p className="text-base sm:text-lg mb-4 sm:mb-6">
-                Doskonała komunikacja z centrum Krakowa (ok. 25 km) 
-                i Wieliczką sprawia, że codzienne dojazdy nie stanowią problemu. 
-                Niedaleka autostrada A4 zapewnia wygodne podróże także w dalsze kierunki.
+                Doskonała komunikacja z centrum krakowa (ok. 25km) i Wieliczką sprawia, że codzienne dojazdy nie stanowią problemu. Niedaleka autostrada A4 zapewnia wygodne podróże także w dalsze kierunki.<br/>
+                Do granicy Krakowa 13km, a do centrum Wieliczki 6km.
               </p>
             </div>
             <div className="mb-4 sm:mb-6">
