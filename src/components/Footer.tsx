@@ -57,7 +57,7 @@ export default function Footer() {
               href="https://www.n20.pl/polityka-prywatnosci"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-center text-sm lg:text-lg mt-5"
+              className="text-center text-white text-sm lg:text-lg mt-5"
             >
               Polityka Prywatności
             </Link>

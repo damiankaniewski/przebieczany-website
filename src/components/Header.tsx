@@ -40,7 +40,7 @@ export default function Header() {
           data-aos="zoom-out"
           data-aos-duration="1000"
         >
-          <Link href="#home" className="font-['limelight'] font-bold lg:text-[32px] md:text-[28px] sm:text-[20px] drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)]">
+          <Link href="#home" className="font-['limelight'] text-white font-bold lg:text-[32px] md:text-[28px] sm:text-[20px] drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)]">
             Przebieczany
           </Link>
         </div>
