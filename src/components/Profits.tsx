@@ -20,25 +20,29 @@ export default function Profits() {
     {
       icon: <FaUmbrellaBeach className="text-green4 text-5xl" />,
       title: "Taras i ogród",
-      description: "Przestrzeń do relaksu i spotkań w gronie bliskich, z bezpośrednim wyjściem z salonu.",
+      description:
+        "Przestrzeń do relaksu i spotkań w gronie bliskich, z bezpośrednim wyjściem z salonu.",
       delay: 100,
     },
     {
       icon: <FaTree className="text-green4 text-5xl" />,
       title: "Spokojna, zielona okolica",
-      description: "Usytuowanie wśród zieleni zapewnia ciszę, komfort i odpoczynek od miejskiego zgiełku.",
+      description:
+        "Usytuowanie wśród zieleni zapewnia ciszę, komfort i odpoczynek od miejskiego zgiełku.",
       delay: 200,
     },
     {
       icon: <FaHammer className="text-green4 text-5xl " />,
       title: "Solidne wykonanie",
-      description: "Dom zbudowany z wysokiej jakości materiałów, spełniających wszystkie normy budowlane.",
+      description:
+        "Dom zbudowany z wysokiej jakości materiałów, spełniających wszystkie normy budowlane.",
       delay: 300,
     },
     {
       icon: <FaBolt className="text-green4 text-5xl" />,
       title: "Nowoczesne technologie",
-      description: "Pompa ciepła, rekuperacja i przygotowanie pod fotowoltaikę, dla oszczędności i wygody.",
+      description:
+        "Pompa ciepła i przygotowanie pod fotowoltaikę, dla oszczędności i wygody.",
       delay: 400,
     },
     {
@@ -51,7 +55,8 @@ export default function Profits() {
     {
       icon: <FaShieldAlt className="text-green4 text-5xl" />,
       title: "Bezpieczeństwo i prywatność",
-      description: "Ogrodzona działka i zamknięty teren zapewniają prywatność i spokój mieszkańców.",
+      description:
+        "Ogrodzona działka i zamknięty teren zapewniają prywatność i spokój mieszkańców.",
       delay: 600,
     },
     {
